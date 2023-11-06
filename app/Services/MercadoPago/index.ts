@@ -16,7 +16,7 @@ class MercadoPagoService {
     if (code && code.canBeUsed > 0) {
       code.canBeUsed -= 1
       await code.save()
-      const response = preferences.create({
+      const response = await preferences.create({
         auto_return: 'approved',
         back_urls: {
           success: 'https://api.uepautd.online/marketplace/payments',

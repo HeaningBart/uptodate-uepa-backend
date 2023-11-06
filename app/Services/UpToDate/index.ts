@@ -23,7 +23,7 @@ class UpToDateService {
         }
       )
       if (response.data.data.value !== 'true') throw new Error('Unable to log in, try again!')
-      await Redis.set('utd_cookie', `JSESSIONID=${JSESSIONID};`, 'EX', '3600')
+      await Redis.set('utd_cookie', `JSESSIONID=${JSESSIONID};`, 'EX', '1800')
       return axios.create({
         headers: {
           Cookie: `JSESSIONID=${JSESSIONID};`,

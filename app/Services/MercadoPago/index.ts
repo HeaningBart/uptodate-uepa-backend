@@ -1,5 +1,5 @@
 import Env from '@ioc:Adonis/Core/Env'
-import { configurations, preferences, payment } from 'MercadoPago'
+import { configurations, preferences, payment } from 'mercadopago'
 import { CreatePreferenceResponse, GetPaymentResponse } from './interface'
 import PromotionalCode from 'App/Models/PromotionalCode'
 

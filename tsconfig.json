@@ -29,7 +29,10 @@
       "@adonisjs/core",
       "@adonisjs/repl",
       "@japa/preset-adonis/build/adonis-typings",
-      "@adonisjs/redis"
+      "@adonisjs/redis",
+      "@adonisjs/lucid",
+      "@adonisjs/auth",
+      "@adonisjs/bouncer"
     ]
   }
 }

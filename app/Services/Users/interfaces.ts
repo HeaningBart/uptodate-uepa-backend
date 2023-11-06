@@ -25,11 +25,10 @@ export interface UserQueryParams {
 }
 
 const updateUserSchema = z.object({
-  username: z.string().optional(),
+  email: z.string().optional(),
   role: z.enum(['Admin', 'Editor', 'Reader']).optional(),
-  profile_picture: z.custom<MultipartFileContract>().optional(),
   password: z.string().optional(),
-  series_ids: z.array(z.number()).optional(),
+  authorizedUntil: z.string().optional(),
 })
 
 export type UpdateUserPayload = z.infer<typeof updateUserSchema>

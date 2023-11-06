@@ -12,10 +12,12 @@ export default class UpToDateController {
         return response.status(200).json(db_article)
       }
       const article = await UpToDate.get_article(article_slug)
-      await Article.create({
-        slug: article_slug,
-        data: article.data,
-      })
+      if (article.data.isCanBookmark) {
+        await Article.create({
+          slug: article_slug,
+          data: article.data,
+        })
+      }
       return response.status(200).json(article)
     } else {
       return response.status(200).json({

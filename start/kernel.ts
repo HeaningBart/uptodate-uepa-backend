@@ -19,4 +19,5 @@ Server.middleware.register([
 Server.middleware.registerNamed({
   silentAuth: () => import('App/Middleware/SilentAuth'),
   auth: () => import('App/Middleware/Auth'),
+  only: () => import('App/Middleware/Only'),
 })

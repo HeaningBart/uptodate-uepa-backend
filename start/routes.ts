@@ -15,9 +15,20 @@ Route.group(() => {
   Route.get('/', 'UsersController.query')
   Route.get('/:id', 'UsersController.getUser')
   Route.put('/:id', 'UsersController.update')
-}).prefix('users')
+})
+  .prefix('users')
+  .middleware('only:Admin')
 
 Route.group(() => {
   Route.post('/create', 'MarketplaceController.createPreference').middleware('auth:api')
   Route.get('/payments', 'MarketplaceController.getPaymentStatus')
 }).prefix('marketplace')
+
+Route.group(() => {
+  Route.get('/', 'CodesController.query')
+  Route.post('/create', 'CodesController.create')
+  Route.put('/update', 'CodesController.update')
+  Route.delete('/delete', 'CodesController.delete')
+})
+  .prefix('codes')
+  .middleware('only:Admin')

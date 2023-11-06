@@ -7,7 +7,7 @@ class UpToDateService {
     if (!redis_cookie) {
       const new_page = await axios.get('https://www.uptodate.com/login')
       const JSESSIONID = new_page.headers['set-cookie']![0].split('=')[1].split(';')[0]
-      await axios.post(
+      const response = await axios.post(
         `https://www.uptodate.com/services/app/login/json`,
         new URLSearchParams({
           userName: 'gsouzavs',
@@ -22,7 +22,8 @@ class UpToDateService {
           },
         }
       )
-      await Redis.set('utd_cookie', `JSESSIONID=${JSESSIONID};`, 'EX', '86400')
+      if (response.data.value !== 'true') throw new Error('Unable to log in, try again!')
+      await Redis.set('utd_cookie', `JSESSIONID=${JSESSIONID};`, 'EX', '3600')
       return axios.create({
         headers: {
           Cookie: `JSESSIONID=${JSESSIONID};`,

@@ -41,13 +41,9 @@ export default class MarketplaceController {
       await payment.user.save()
       await payment.save()
 
-      response.status(200).json({
-        status: 'paid',
-      })
+      response.redirect('https://uepautd.online')
     } else {
-      response.json({
-        status: 'rejected',
-      })
+      response.redirect('https://uepautd.online')
     }
   }
 }

@@ -10,17 +10,18 @@ configurations.configure({
 })
 
 class MercadoPagoService {
-  public async createPreference(promotional_code?: string) {
+  public async createPreference(promotional_code?: string, external_reference?: string) {
     const code = await PromotionalCode.findBy('slug', promotional_code)
 
     const response = code
       ? await preferences.create({
           auto_return: 'approved',
           back_urls: {
-            success: 'https://uepautd.online/payments/success',
-            pending: 'https://uepautd.online/payments/pending',
-            failure: 'https://uepautd.online/payments/failure',
+            success: 'https://api.uepautd.online/marketplace/payments',
+            pending: 'https://api.uepautd.online/marketplace/payments',
+            failure: 'https://api.uepautd.online/marketplace/payments',
           },
+          ...(external_reference && { external_reference }),
           items: [
             {
               title: 'Assinatura mensal - UTD',
@@ -39,6 +40,7 @@ class MercadoPagoService {
             pending: 'https://api.uepautd.online/marketplace/payments',
             failure: 'https://api.uepautd.online/marketplace/payments',
           },
+          ...(external_reference && { external_reference }),
           items: [
             {
               title: 'Assinatura mensal - UTD',

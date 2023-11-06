@@ -22,4 +22,5 @@ export interface GetPaymentResponse {
   description: string
   id: number
   status: string
+  external_reference: string
 }

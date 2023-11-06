@@ -7,6 +7,9 @@ Route.get('/contents/image', 'UpToDateController.getImage')
 
 Route.get('/status', 'UsersController.getUserStatus')
 
+Route.post('/webhooks', 'MarketplaceController.webhook')
+Route.post('/ipn', 'MarketplaceController.processIpn')
+
 Route.group(() => {
   Route.get('/user', 'UsersController.getUserData')
 }).prefix('auth')

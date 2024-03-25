@@ -4,7 +4,8 @@ export default class extends BaseSchema {
   protected tableName = 'articles'
 
   async up() {
-    this.schema.createTableIfNotExists(this.tableName, (table) => {
+    if (await this.schema.hasTable(this.tableName)) return
+    this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.json('data').notNullable()
       table.string('slug').notNullable()

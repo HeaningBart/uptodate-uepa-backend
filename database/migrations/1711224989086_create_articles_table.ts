@@ -14,6 +14,6 @@ export default class extends BaseSchema {
   }
 
   async down() {
-    this.schema.dropTableIfNotExists(this.tableName)
+    this.schema.dropTableIfExists(this.tableName)
   }
 }

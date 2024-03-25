@@ -4,7 +4,7 @@ export default class extends BaseSchema {
   protected tableName = 'promotional_codes'
 
   async up() {
-    this.schema.createTable(this.tableName, (table) => {
+    this.schema.createTableIfNotExists(this.tableName, (table) => {
       table.increments('id')
       table.string('slug')
       table.integer('can_be_used').defaultTo(0)
@@ -15,6 +15,6 @@ export default class extends BaseSchema {
   }
 
   async down() {
-    this.schema.dropTable(this.tableName)
+    this.schema.dropTableIfNotExists(this.tableName)
   }
 }

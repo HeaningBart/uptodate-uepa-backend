@@ -4,7 +4,7 @@ export default class extends BaseSchema {
   protected tableName = 'payments'
 
   async up() {
-    this.schema.createTable(this.tableName, (table) => {
+    this.schema.createTableIfNotExists(this.tableName, (table) => {
       table.increments('id')
       table.string('custom_id').notNullable()
       table.integer('user_id').references('users.id').onDelete('CASCADE').onUpdate('CASCADE')
@@ -18,6 +18,6 @@ export default class extends BaseSchema {
   }
 
   async down() {
-    this.schema.dropTable(this.tableName)
+    this.schema.dropTableIfNotExists(this.tableName)
   }
 }

@@ -4,7 +4,7 @@ export default class extends BaseSchema {
   protected tableName = 'auth_access_tokens'
 
   async up() {
-    this.schema.createTable(this.tableName, (table) => {
+    this.schema.createTableIfNotExists(this.tableName, (table) => {
       table.increments('id')
       table
         .integer('tokenable_id')
@@ -26,6 +26,6 @@ export default class extends BaseSchema {
   }
 
   async down() {
-    this.schema.dropTable(this.tableName)
+    this.schema.dropTableIfNotExists(this.tableName)
   }
 }

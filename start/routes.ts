@@ -29,7 +29,7 @@ router.get('/preferences/process', '#controllers/mercadopago_controller.process_
 router
   .group(() => {
     router.get('/query', '#controllers/users_controller.query')
-    router.get('/:id', '#controllers/users_controller.get')
+    router.get('/:id', '#controllers/users_controller.getUser')
     router.put('/:id', '#controllers/users_controller.update')
   })
   .prefix('users')

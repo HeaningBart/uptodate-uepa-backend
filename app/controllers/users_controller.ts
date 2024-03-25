@@ -40,6 +40,12 @@ export default class UsersController {
     return response.json(token.toJSON())
   }
 
+  public async getUser({ request, response }: HttpContext) {
+    const id = request.param('id')
+    const user = await this.users_service.get_user_by_id(id)
+    response.send(user)
+  }
+
   public async query({ request, response, bouncer }: HttpContext) {
     const query_string = request.input('query', '')
     const order = request.input('order', 'asc')
@@ -63,7 +69,7 @@ export default class UsersController {
   }
 
   async register({ request, response }: HttpContext) {
-    const { email, password} = request.only(['email', 'username', 'password'])
+    const { email, password } = request.only(['email', 'username', 'password'])
     await this.users_service.register('', password, email)
     response.status(201)
   }

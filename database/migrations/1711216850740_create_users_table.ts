@@ -4,6 +4,8 @@ export default class extends BaseSchema {
   protected tableName = 'users'
 
   async up() {
+    if (await this.schema.hasTable(this.tableName)) return
+
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary()
       table.string('email', 255).notNullable().unique()

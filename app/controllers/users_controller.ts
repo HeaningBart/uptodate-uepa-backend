@@ -63,8 +63,8 @@ export default class UsersController {
   }
 
   async register({ request, response }: HttpContext) {
-    const { email, password, username } = request.only(['email', 'username', 'password'])
-    await this.users_service.register(username, password, email)
+    const { email, password} = request.only(['email', 'username', 'password'])
+    await this.users_service.register('', password, email)
     response.status(201)
   }
 

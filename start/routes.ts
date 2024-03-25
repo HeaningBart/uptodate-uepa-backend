@@ -13,7 +13,7 @@ router.get('/article/:slug', '#controllers/uptodate_controller.get')
 router.get('/contents/image', '#controllers/uptodate_controller.get_image')
 router.get('/auth/user', '#controllers/users_controller.get')
 router.post('/auth/login', '#controllers/users_controller.login')
-
+router.post('/register', '#controllers/users_controller.register')
 router.get('/products', '#controllers/products_controller.query')
 router.get('/products/:id', '#controllers/products_controller.get')
 router.post('/products', '#controllers/products_controller.create')
